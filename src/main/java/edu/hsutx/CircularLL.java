@@ -43,6 +43,7 @@ public class CircularLL<E> {
      */
     public boolean isEmpty() {
         // TODO - Complete this method
+        return size == 0;
     }
 
     /**
@@ -53,6 +54,7 @@ public class CircularLL<E> {
      */
     public void addFirst(E e) {
         // TODO - Complete this method
+        return;
     }
 
     /**
@@ -63,6 +65,7 @@ public class CircularLL<E> {
      */
     public void addLast(E e) {
         // TODO - Complete this method
+        return;
     }
 
     /**
@@ -86,6 +89,7 @@ public class CircularLL<E> {
      */
     public void rotate() {
         // TODO - Complete this method
+        return;
     }
 
     /**
@@ -95,6 +99,7 @@ public class CircularLL<E> {
      */
     public E first() {
         // TODO - Complete this method
+        return null; 
     }
 
 }

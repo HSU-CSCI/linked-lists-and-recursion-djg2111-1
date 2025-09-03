@@ -23,6 +23,7 @@ public class GrowingDays {
      */
     GrowingDays(double[] degrees, double threshold) {
         // TODO - Complete this method.  Fill degreeDays and cumulativeDegreeDays appropriately.
+        return ;
     }
 
     /**
@@ -89,6 +90,7 @@ public class GrowingDays {
      */
     public int getDayOverCDHelper(int left, int right, double threshold) {
         // TODO - Complete this method
+        return -1;
     }
 
     /**
