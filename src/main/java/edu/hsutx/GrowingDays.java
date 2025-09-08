@@ -22,8 +22,19 @@ public class GrowingDays {
      * @param threshold The temperature threshold for calculating growing degree days.
      */
     GrowingDays(double[] degrees, double threshold) {
-        // TODO - Complete this method.  Fill degreeDays and cumulativeDegreeDays appropriately.
-        return ;
+        this.degreeDays = new double[degrees.length];
+        this.cumulativeDegreeDays = new double[degrees.length];
+        for (int i = 0; i < degrees.length; i++) {
+            if (degrees[i] > threshold) {
+                this.degreeDays[i] = degrees[i] - threshold;
+            } else {
+                this.degreeDays[i] = 0;
+            }
+        }
+        this.cumulativeDegreeDays[0] = this.degreeDays[0];
+        for (int i = 1; i < degrees.length; i++) {
+            this.cumulativeDegreeDays[i] = this.cumulativeDegreeDays[i-1] + this.degreeDays[i];
+        }
     }
 
     /**
@@ -89,10 +100,14 @@ public class GrowingDays {
      * @return The index of the first day where cumulative degree days exceed the threshold.
      */
     public int getDayOverCDHelper(int left, int right, double threshold) {
-        // TODO - Complete this method
-        return -1;
+        if (left == right) return left;
+        int mid = left + (right - left) / 2;
+        if (cumulativeDegreeDays[mid] >= threshold) {
+            return getDayOverCDHelper(left, mid, threshold);
+        } else {
+            return getDayOverCDHelper(mid + 1, right, threshold);
+        }
     }
-
     /**
      * Finds the first day where the cumulative degree days exceed the specified threshold.
      *
@@ -101,7 +116,9 @@ public class GrowingDays {
      * or -1 if the threshold is not reached.
      */
     public int getDayOverCDThreshold(double threshold) {
-        if (this.cumulativeDegreeDays[this.cumulativeDegreeDays.length-1] < threshold) return -1;
-        return this.getDayOverCDHelper(0, degreeDays.length-1, threshold);
+        if (cumulativeDegreeDays[0] >= threshold) return 0;
+        if (cumulativeDegreeDays[cumulativeDegreeDays.length - 1] < threshold) return -1;
+        return getDayOverCDHelper(0, cumulativeDegreeDays.length - 1, threshold);
+    
     }
 }
